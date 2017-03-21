@@ -1,0 +1,14 @@
+
+.grey{
+	background: grey;
+}
+.green{
+	background: green;
+}
+.yellow{
+	background: yellow;
+}
+.givefixedWidht{
+	width: 50%;
+	display: inline-block;
+}
