@@ -2,27 +2,35 @@
 	<head>
 		<title>Learning Vue</title>
 		<script type="text/javascript" src="vue.js"></script>
+
+		<style>
+			.red-me{
+				background: red;
+			}
+		</style>
+
 	</head>
 	<body>
 		<div id="root">
-			<ul>
-				<li v-for="name in names"> {{  name }}</li>
-			</ul>
-			<input type="text" id="input" v-model="newName">
-			<button id="button" v-on:click="addName">Add Name</button>
+			<button :class="{ 'red-me':addRed }" @click="enableButton">{{  buttext1 }}</button>
+			<button :disabled="notClicked">{{  buttext2 }}</button>
 		</div>
 		
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#root",
 				data: {
-					names: ['Korim', 'Rohim', 'Jobbar'],
-					newName: ''
+					addRed : false,
+					notClicked : true,
+					buttext1 : "Enable",
+					buttext2 : "Someone Enable Me",
 				},
 				methods:{
-					addName(){
-						this.names.push(this.newName);
-						this.newName = '';
+					enableButton(){
+						this.addRed = true;
+						this.notClicked = false;
+						this.buttext1 = "Done It :)";
+						this.buttext2 = "Thank You!";
 					}
 				}
 			})
