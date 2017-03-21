@@ -1,4 +1,6 @@
-
+.row{
+	padding-top: 50px;
+}
 .grey{
 	background: grey;
 }

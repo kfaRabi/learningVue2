@@ -1,25 +1,32 @@
-Vue.component('task', {
-	template: `<li><slot></slot></li>`,
-});
+var msg = Vue.component('message', {
+	props: ['title', 'body'],
 
-Vue.component('task-list', {
-	template: `
-		<div>
-			<task v-for="task in tasks">{{ task.desc }}</task>
-		</div>
-	`,
+	// props only supports  names that are of lower case 'a' to 'z'
+	// no capitalization, camelCaseing, - or _
+	// simply does not work for some wired reason
 
 	data(){
 		return {
-			tasks: [
-				{desc: "Go to the store", done: true},
-				{desc: "Go to the university", done: true},
-				{desc: "Eat dinner", done: false},
-				{desc: "Watch tutorial", done: false},
-				{desc: "Learn Vue", done: false},
-				{desc: "Develop Social Network", done: false},
-			]
+			isVisible: true
 		};
+	},
+
+	template: `
+		<article class="message" v-show="isVisible">
+		 	<div class="message-header">
+		    	<p>{{ title }}</p>
+		    	<button class="delete" @click = "deleteMessage"></button>
+		  	</div>
+		  	<div class="message-body">
+		    	{{ body	}}
+		  	</div>
+		</article>	
+	`,
+
+	methods: {
+		deleteMessage(){
+			this.isVisible = false;
+		}
 	}
 
 });

@@ -1,18 +1,19 @@
 <html>
 	<head>
 		<title>Learning Vue</title>
-		<link rel="stylesheet" href="style.css" class="css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="bulma.css">
 
 	</head>
 	
 	<body>
 
-		<div id="root">
-			<ul>
-				<task-list></task-list>
-			</ul>
+		<div id="root" class="container">
+			<div class="row">
+				<message title="My Given Title" body="Lorem ipsum dolor sit amet" ></message>
+				<message title="My Given Title Number 2" body="Lorem ipsum dolor sit amet, hua hukka hua" ></message>
+			</div>
 		</div>
-
 		<!-- alwyas add vue.js and main.js under the root div, otherwise it won't find root -->
 		<script src="vue.js"></script>
 		<script src="main.js"></script>
