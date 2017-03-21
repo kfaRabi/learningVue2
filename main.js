@@ -1,3 +1,5 @@
+window.Event = new Vue();
+
 Vue.component('cupon',{
 	
 	//props: [],
@@ -8,11 +10,11 @@ Vue.component('cupon',{
 
 	methods: {
 		fireEvent(){
-			this.$emit("applied");
+			Event.$emit("applied");
 		},
 	},
 
-})
+});
 
 
 
@@ -29,6 +31,10 @@ var app = new Vue({
 		cuponApplied(){
 			this.isApplied = true;
 		},
+	},
+
+	mounted(){
+		Event.$on("applied", () => alert("Handling It."));
 	}
 
 });
