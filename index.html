@@ -10,12 +10,8 @@
 
 	<div id="root" class="container">
 		<div class="row">
-			<tabs>
-				<tab name="Home" selected="true"> This is the Home Tab</tab>
-				<tab name="Login"> This is the Login Tab</tab>
-				<tab name="About"> This is the About Tab</tab>
-				<tab name="About Us"> This is the About Us Tab</tab>
-			</tabs>
+			<cupon @applied = "cuponApplied"></cupon>
+			<h1 v-show="isApplied"> Cupon Applied!</h1>
 		</div>
 	</div>
 	<!-- alwyas add vue.js and main.js under the root div, otherwise it won't find root -->
