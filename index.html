@@ -5,15 +5,25 @@
 	</head>
 	<body>
 		<div id="root">
-			<input type="text" v-model="message">
-			<p>The value of the input is: {{ message }}</p>
+			<ul>
+				<li v-for="name in names"> {{  name }}</li>
+			</ul>
+			<input type="text" id="input" v-model="newName">
+			<button id="button" v-on:click="addName">Add Name</button>
 		</div>
 		
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#root",
 				data: {
-					message: 'Hello World'
+					names: ['Korim', 'Rohim', 'Jobbar'],
+					newName: ''
+				},
+				methods:{
+					addName(){
+						this.names.push(this.newName);
+						this.newName = '';
+					}
 				}
 			})
 		</script>
