@@ -1,34 +1,22 @@
-var msg = Vue.component('message', {
-	props: ['title', 'body'],
-
-	// props only supports  names that are of lower case 'a' to 'z'
-	// no capitalization, camelCaseing, - or _
-	// simply does not work for some wired reason
-
-	data(){
-		return {
-			isVisible: true
-		};
-	},
+Vue.component('modal', {
+	
+	// we can hide the modal just like we hide a message using component's local data and methods.
+	// To do this, we would just attach @click="isActive=false" on the modal-close button.
+	// Reminder: Then, isActive needs to be this modal's local returned data.
 
 	template: `
-		<article class="message" v-show="isVisible">
-		 	<div class="message-header">
-		    	<p>{{ title }}</p>
-		    	<button class="delete" @click = "deleteMessage"></button>
-		  	</div>
-		  	<div class="message-body">
-		    	{{ body	}}
-		  	</div>
-		</article>	
-	`,
-
-	methods: {
-		deleteMessage(){
-			this.isVisible = false;
-		}
-	}
-
+		<div class="modal is-active">
+			<div class="modal-background"></div>
+			<div class="modal-content">
+				<div class="box">
+					<p>
+						<slot></slot>
+					</p>
+				</div>
+			</div>
+			<button class="modal-close" @click="$emit('close')"></button>
+		</div>
+	`
 });
 
 
@@ -37,4 +25,7 @@ var msg = Vue.component('message', {
 
 var app = new Vue({
 	el: "#root",
+	data: {
+		isActive: false,
+	}
 });
