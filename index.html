@@ -4,34 +4,85 @@
 		<script type="text/javascript" src="vue.js"></script>
 
 		<style>
-			.red-me{
-				background: red;
+			.red{
+				background: grey;
+			}
+			.green{
+				background: green;
+			}
+			.yellow{
+				background: yellow;
+			}
+			.givefixedWidht{
+				width: 50%;
+				display: inline-block;
 			}
 		</style>
 
 	</head>
+	
 	<body>
+
 		<div id="root">
-			<button :class="{ 'red-me':addRed }" @click="enableButton">{{  buttext1 }}</button>
-			<button :disabled="notClicked">{{  buttext2 }}</button>
+			<h2 class="yellow">Tasks List</h2>
+			<ul>
+				<li v-for="task in tasks">
+					<p class="givefixedWidht">{{ task.desc }}</p>
+					<button @click="markAsComplete(task)" class="green" :disabled="task.done">Completed</button>
+					<button @click="markAsIncomplete(task)" class="red" :disabled="!task.done">Incomplete</button>
+				</li>
+			</ul>
+
+			<h2 class="green">Completed Tasks List</h2>
+			<ul>
+				<li v-for="task in completedTasks">
+					{{ task.desc }}
+				</li>
+			</ul>
+
+			<h2 class="red">Incomplete Tasks List</h2>
+			<ul>
+				<li v-for="task in incompleteTasks">
+					{{ task.desc }}
+				</li>
+			</ul>
 		</div>
 		
 		<script type="text/javascript">
 			var app = new Vue({
 				el: "#root",
 				data: {
-					addRed : false,
-					notClicked : true,
-					buttext1 : "Enable",
-					buttext2 : "Someone Enable Me",
+					tasks: [
+						{desc: "Go to the store", done: true},
+						{desc: "Go to the university", done: true},
+						{desc: "Eat dinner", done: false},
+						{desc: "Watch tutorial", done: false},
+						{desc: "Learn Vue", done: false},
+						{desc: "Develop Social Network", done: false},
+					]
 				},
-				methods:{
-					enableButton(){
-						this.addRed = true;
-						this.notClicked = false;
-						this.buttext1 = "Done It :)";
-						this.buttext2 = "Thank You!";
+
+				computed: {
+					// methods get called on some action
+					//computed does not need any action, just specify where you need it
+					completedTasks(){
+						return this.tasks.filter(task => task.done == true);
+					},
+					incompleteTasks(){
+						let filteredTasks = this.tasks.filter(task => task.done == false);
+						return filteredTasks;
+					},
+				},
+
+				methods: {
+					markAsComplete(task){
+						task.done = true;
+					},
+
+					markAsIncomplete(task){
+						task.done = false;
 					}
+
 				}
 			})
 		</script>
