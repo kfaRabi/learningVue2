@@ -12,6 +12,8 @@ Vue.component('tab', {
 	data(){
 		return {isActive: false};
 	},
+	//we are creating this bcz, otherwise we had to change the property of the components.
+	//Vue does not allow that. Hence, the isActive data field.
 
 	computed: {
 		getLink(){
@@ -46,13 +48,14 @@ Vue.component('tabs',{
 		};
 	},
 
-	mounted(){ // could'hv used mounted() instead. learn the diffrences
+	mounted(){ // learn the diffrences btn mounted and created
 		this.tabs = this.$children;
 		// if(this.tabs.length){
 		// 	this.tabs[0].isActive = true;
 		// }
 		let flag = true;
-		for (var i = 0; i <= this.tabs.length - 1; i--) {
+		for (var i = 0; i <= this.tabs.length - 1; i++) {
+			//--i changed to i++
 			if(this.tabs[i].selected){
 				this.tabs[i].isActive = true;
 				flag = false;
