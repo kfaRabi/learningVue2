@@ -10,8 +10,13 @@
 
 	<div id="root" class="container">
 		<div class="row">
-			<cupon></cupon>
-			<!-- <h1 v-show="isApplied"> Cupon Applied!</h1> -->
+			<modal-card>
+				<template slot = "title">My Title</template>
+				<template>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique modi nesciunt id saepe, maiores iusto eum natus repellendus facere magnam aut sed sapiente! Nihil officia amet nobis ut, optio ducimus.
+				</template>
+				<!-- no footer - default one will be used-->
+			</modal-card>
 		</div>
 	</div>
 	<!-- alwyas add vue.js and main.js under the root div, otherwise it won't find root -->
